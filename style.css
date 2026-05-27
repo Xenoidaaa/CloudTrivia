@@ -1,0 +1,249 @@
+body {
+    background-image: url(img/cloud.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+/* BAGIAN MASUKKAN USERNAME */
+
+.halaman-utama {
+    font-family: 'DM Mono', monospace !important;
+    font-weight: 700;
+    font-size: 50px;
+    text-align: center;
+    color: #1e375a;
+    text-shadow: 4px 2px 0px #ffffffcc;
+    justify-content: center;
+    padding-top: 20px;
+    letter-spacing: 0.5px;
+    line-height: 0.5px;
+
+    
+}
+
+.halaman-utama h3 {
+    font-size: 45px;
+    font-family: 'Syne', sans-serif;
+    color: rgb(28, 75, 120);
+}
+
+
+.loginusername {
+    font-family: 'Syne', sans-serif;
+    color: white;
+    background-color: rgba(43, 89, 120, 0.592);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: none;
+    border-radius: 30px;
+    width: 30%;
+    height: 180px;
+    text-align: center;
+    padding-top: 20px;
+    font-family: 'arial';
+    
+}
+
+.input-groub {
+    font-family: 'Syne', sans-serif;
+}
+
+
+.input-field {
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    max-width: 300px;
+    padding: 12px 20px;
+    border: 2px solid #ffffff;
+    border-radius: 12px;
+    border-style: none;
+    outline: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333333;
+    text-align: center;
+    font-family: 'Syne', sans-serif;
+}
+
+.input-field:focus {
+    border-color: #6c5ce7;
+    box-shadow: 0 0 8px rgba(108, 92, 231, 0.2);
+}
+
+.btnMulai {
+    display: block;
+    margin: 20px auto 0 auto;
+    padding: 10px 25px;
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: rgba(108, 92, 231, 0.2);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btnMulai:hover {
+    background-color: #5b4cc4;
+}
+
+@keyframes munculHalus {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.title-quiz {
+    animation: munculHalus 0.8s ease-out forwards;
+}
+
+.loginusername {
+    animation: munculHalus 0.8s ease-out 0.3s forwards;
+}
+@media screen and (max-width: 480px) {
+
+    .halaman-utama {
+        font-size: 32px !important;
+        padding: 0 15px;
+        margin-bottom: 15px;
+    }
+
+    .loginusername {
+        width: 80% !important;
+        height: 210px !important;
+        padding: 25px 20px !important;
+        box-sizing: border-box;
+
+    }
+
+    .halaman-utama h3 {
+        font-size: 32px;
+    }
+
+
+}
+
+/* BAGIAN ISI QUIZ */
+
+.container-quiz {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.header-quiz {
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+    max-width: 400px;
+    margin-bottom: 15px;
+    font-family: monospace;
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.box-soal {
+    width: 85%;
+    max-width: 400px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 15px;
+    padding: 25px 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.progres-soal {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: #1e375a;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.text-soal {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    color: #000000;
+    margin: 0;
+}
+
+.pilihan-jawaban {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 85%;
+    max-width: 400px;
+    position: relative;
+    z-index: 5;
+}
+
+.opsi-btn {
+    width: 100%;
+    padding: 15px;
+    font-family: 'DM Mono', monospace;
+    font-size: 15px;
+    font-weight: bold;
+    color: #1e375a;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 10;
+}
+
+.opsi-btn:hover {
+    background-color: #3498db;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+@media screen and (max-width: 480px) {
+    .header-quiz, .box-soal, .pilihan-jawaban {
+        width: 100% !important;
+    }
+
+    .text-soal {
+        font-size: 16px !important;
+    }
+
+    .opsi-btn {
+        padding: 12px 15px !important;
+        font-size: 14px !important;
+    }
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUIZ</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <section class="halaman-utama">
+
+        <div class="title-quiz">
+            <h2>Cloud<span>Trivia</span></h2>
+            <h3>Quiz<span>Games</span></h3>
+        </div>
+    </section>
+
+    <section class="loginusername">
+        <div class="input-groub">
+            <h3>Masukkan Username</h3>
+            <input type="text" id="username" class="input-field">
+        </div>
+
+        <button type="button" class="btnMulai" id="btnMulai">Play</button>
+
+    </section>
+
+    <script>
+        document.getElementById('btnMulai').addEventListener('click', function() {
+
+            var username = document.getElementById('username').value;
+
+            if (username.trim() == "") {
+                alert("Silahkan masukkan Username terlebih dahulu");
+            } else {
+                localStorage.setItem('pemain', username);
+
+                window.location.href = "Kategori/kategori.html";
+            }
+        });
+    </script>
+    
+</body>
+</html>

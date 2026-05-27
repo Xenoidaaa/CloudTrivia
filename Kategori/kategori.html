@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="../style.css">
+    <title>Kategori Quiz</title>
+</head>
+<body>
+
+    <section class="container-quiz">
+
+        <div class="header-quiz">
+            <span class="pemain-aktif">👤<span id="namaPemain"></span></span>
+            <span class="timer">🕛 <span id="waktu">10</span></span>
+        </div>
+
+        <div class="box-soal">
+            <div class="progres-soal"></div>
+            <h2 class="text-soal"></h2>
+        </div>
+
+        <div class="pilihan-jawaban">
+        </div>
+    </section>
+
+    <script>
+        const nama = localStorage.getItem('pemain');
+        if (nama) {
+            document.getElementById('namaPemain').innerText = nama;
+        }
+
+        /* DATA SOAL QUIZ */
+
+        const bankSoal = [
+            {
+                soal: "Apa nama aplikasi kuis yang sedang kamu mainkan ini?",
+                opsi: ["A. SkyTrivia", "B. CloudTrivia", "C. RainQuiz", "D. StormMind"],
+                jawaban: 1
+            },
+            {
+                soal: "Manakah yang termasuk struktur untuk membuat sebuah website?",
+                opsi: ["A. HTML", "B. CSS", "C. Python", "D. Javascript"],
+                jawaban: 0
+            },
+            {
+                soal: "Berapakah hasil dari 5 + 5 * 2?",
+                opsi: ["A. 20", "B. 15", "C. 25", "D. 10"],
+                jawaban: 1
+            }
+        ];
+
+        let indeksSoalSekarang = 0;
+        let skor = 0;
+        let waktu = 30;
+        let hitungMundur;
+
+        const elemennama = localStorage.getItem('pemain') || "Pemain";
+        document.getElementById('namaPemain').innerText = elemennama;
+
+        function tampilkanSoal() {
+            waktu = 30;
+            document.getElementById('waktu').innerText = waktu;
+            clearInterval (hitungMundur);
+            mulaiTimer();
+
+            if (indeksSoalSekarang >= bankSoal.length) {
+                selesaiKuis();
+                return;
+            }
+
+            const dataAktif = bankSoal[indeksSoalSekarang];
+
+            document.querySelector('.progres-soal').innerText = `Pertanyaan ${indeksSoalSekarang + 1} dari ${bankSoal.length}`;
+            document.querySelector('.text-soal').innerText = dataAktif.soal;
+
+            const tempatJawaban = document.querySelector('.pilihan-jawaban');
+            tempatJawaban.innerHTML = "";
+
+            dataAktif.opsi.forEach((opsi, index) => {
+                const tombol = document.createElement('button');
+                tombol.classList.add('opsi-btn');
+                tombol.innerText = opsi;
+
+                tombol.onclick = () => cekJawaban(index);
+                tempatJawaban.appendChild(tombol);
+            });
+        }
+
+        function cekJawaban(indeksDipilih) {
+            clearInterval(hitungMundur);
+            const jawabanBenar = bankSoal[indeksSoalSekarang].jawaban;
+
+            if (indeksDipilih === jawabanBenar) {
+                skor += 10;
+                alert("Jawaban kamu Benar!");
+            } else {
+                alert("Jawaban kamu Salah!");
+            }
+
+            indeksSoalSekarang++;
+            tampilkanSoal();
+        }
+
+        function mulaiTimer() {
+            hitungMundur = setInterval(() => {
+                waktu--;
+                document.getElementById('waktu').innerText = waktu;
+
+                if (waktu <= 0) {
+                    clearInterval (hitungMundur);
+                    alert("Waktu habis!");
+                    indeksSoalSekarang++;
+                    tampilkanSoal();
+                }
+            }, 1000);
+        }
+
+        function selesaiKuis() {
+            document.querySelector('.container-quiz').innerHTML = `
+            <div class="box-soal" style="margin-top: 50px;">
+                <h2 class="text-soal">🎉 Kuis Selesai! 🎉</h2>
+                <p class="progres-soal" style="color: #black; font-size: 16px; margin-top: 15px;">
+                    Selamat <b>${nama}</b>, total Skor kamu adalah:
+                </p>
+                <h1 style="font-family: 'DM Mono', monospace; color: #black; font_size: 48px; margin: 10px 0;">${skor}</h1>
+                <button class="opsi-btn" syle="text-align: center; margin-top: 15px;" onclick="location.href='../index.html'">
+                    Main Lagi
+
+                    </button>
+                </div>
+            `;
+        }
+
+        window.onload = function() {
+            tampilkanSoal();
+
+        };
+
+
+
+    </script>
+
+</body>
+</html>
